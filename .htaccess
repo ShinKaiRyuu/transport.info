@@ -1,1 +1,8 @@
 AddDefaultCharset UTF-8
+
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^transport/([^-]*)$ transport.php?type=$1
+RewriteRule ^transport/([^-]*)-([^-]*)$ transport.php?type=$1&name=$2
+RewriteRule ^transport/([^-]*)-([^-]*)-([^-]*)$ transport.php?type=$1&name=$2&stop=$3&

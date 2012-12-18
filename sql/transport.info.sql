@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2012 at 02:45 PM
+-- Generation Time: Dec 18, 2012 at 09:58 PM
 -- Server version: 5.5.25
--- PHP Version: 5.3.13
+-- PHP Version: 5.2.12
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `busses` (
   UNIQUE KEY `number` (`name`),
   KEY `start_point_id` (`start_point_id`,`end_point_id`),
   KEY `end_point_id` (`end_point_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `busses`
+--
+
+INSERT INTO `busses` (`id`, `name`, `start_point_id`, `end_point_id`) VALUES
+(1, '123', 1, 16);
 
 -- --------------------------------------------------------
 
@@ -51,7 +58,29 @@ CREATE TABLE IF NOT EXISTS `busses_to_stop_points` (
   PRIMARY KEY (`id`),
   KEY `bus_id` (`bus_id`,`stop_point_id`),
   KEY `stop_point_id` (`stop_point_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `busses_to_stop_points`
+--
+
+INSERT INTO `busses_to_stop_points` (`id`, `bus_id`, `stop_point_id`, `times`) VALUES
+(5, 1, 1, '10:00; 11:00; 12:00'),
+(6, 1, 2, '10:05; 11:05; 12:05'),
+(7, 1, 3, '10:10; 11:10; 12:10'),
+(8, 1, 4, '10:15; 11:15; 12:15'),
+(9, 1, 5, '10:20; 11:20; 12:20'),
+(10, 1, 6, '10:25; 11:25; 12:25'),
+(11, 1, 7, '10:30; 11:30; 12:30'),
+(12, 1, 8, '10:35; 11:35; 12:35'),
+(13, 1, 9, '10:40; 11:40; 12:40'),
+(14, 1, 10, '10:45; 11:45; 12:45'),
+(15, 1, 11, '10:50; 11:50; 12:50'),
+(16, 1, 12, '10:55; 11:55; 12:55'),
+(17, 1, 13, '11:00; 12:00; 13:00'),
+(18, 1, 14, '11:05; 12:05; 13:05'),
+(19, 1, 15, '11:10; 12:10; 13:10'),
+(20, 1, 16, '11:15; 12:15; 13:15');
 
 -- --------------------------------------------------------
 
@@ -64,7 +93,15 @@ CREATE TABLE IF NOT EXISTS `drivers` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `drivers`
+--
+
+INSERT INTO `drivers` (`id`, `name`) VALUES
+(1, 'Кузьмич С.В.'),
+(2, 'Шинкарев Д.С.');
 
 -- --------------------------------------------------------
 
@@ -79,7 +116,14 @@ CREATE TABLE IF NOT EXISTS `drivers_to_busses` (
   PRIMARY KEY (`id`),
   KEY `driver_id` (`driver_id`,`bus_id`),
   KEY `bus_id` (`bus_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `drivers_to_busses`
+--
+
+INSERT INTO `drivers_to_busses` (`id`, `driver_id`, `bus_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +153,14 @@ CREATE TABLE IF NOT EXISTS `drivers_to_trolleybuses` (
   PRIMARY KEY (`id`),
   KEY `driver_id` (`driver_id`,`trolleybus_id`),
   KEY `trolleybus_id` (`trolleybus_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `drivers_to_trolleybuses`
+--
+
+INSERT INTO `drivers_to_trolleybuses` (`id`, `driver_id`, `trolleybus_id`) VALUES
+(1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +186,48 @@ CREATE TABLE IF NOT EXISTS `stop_points` (
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+
+--
+-- Dumping data for table `stop_points`
+--
+
+INSERT INTO `stop_points` (`id`, `name`) VALUES
+(3, 'АЗС'),
+(23, 'Богдановича ул.'),
+(7, 'Гашкевича ул.'),
+(25, 'Горизонт ТД'),
+(34, 'Грушевка ст.м.'),
+(12, 'Денисовская ул.'),
+(9, 'Камвольный к-т'),
+(17, 'Карастояновой ул.'),
+(19, 'Каховская ул.'),
+(20, 'Киев к-тр'),
+(24, 'Комаровский рынок'),
+(26, 'Коммунистическая ул.'),
+(22, 'Кропоткина ул.'),
+(15, 'Ленинградская ул.'),
+(35, 'Лермотова ДС'),
+(13, 'Лесная ул.'),
+(1, 'Лошица-2 ДС'),
+(6, 'Лучины Я. ул.'),
+(31, 'Музыкальный театр'),
+(30, 'Мясникова ул.'),
+(16, 'Независимости пл.'),
+(28, 'Немига ст.м.'),
+(27, 'Оперный театр'),
+(18, 'Орловская ул.'),
+(2, 'Прушинских ул.'),
+(29, 'Романовская Слобода ул.'),
+(11, 'Семенова ул.'),
+(10, 'Соленчная ул.'),
+(32, 'Станция диагностики'),
+(4, 'Сырокомли'),
+(33, 'Хмелевского ул.'),
+(14, 'Червенский рынок'),
+(8, 'Чижевских ул.'),
+(21, 'Шевченко бульвар'),
+(5, 'Школа 130');
 
 -- --------------------------------------------------------
 
@@ -184,7 +276,14 @@ CREATE TABLE IF NOT EXISTS `trolleybuses` (
   PRIMARY KEY (`id`),
   KEY `start_point_id` (`start_point_id`,`end_point_id`),
   KEY `end_point_id` (`end_point_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `trolleybuses`
+--
+
+INSERT INTO `trolleybuses` (`id`, `name`, `start_point_id`, `end_point_id`) VALUES
+(1, '12', 17, 35);
 
 -- --------------------------------------------------------
 
@@ -200,7 +299,27 @@ CREATE TABLE IF NOT EXISTS `trolleybus_to_stop_points` (
   PRIMARY KEY (`id`),
   KEY `trolleybus_id` (`trolleybus_id`,`stop_point_id`),
   KEY `stop_point_id` (`stop_point_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+
+--
+-- Dumping data for table `trolleybus_to_stop_points`
+--
+
+INSERT INTO `trolleybus_to_stop_points` (`id`, `trolleybus_id`, `stop_point_id`, `times`) VALUES
+(16, 1, 17, '10:00; 11:00; 12:00'),
+(17, 1, 18, '10:05; 11:05; 12:05'),
+(18, 1, 19, '10:10; 11:10; 12:10'),
+(19, 1, 20, '10:15; 11:15; 12:15'),
+(20, 1, 21, '10:20; 11:20; 12:20'),
+(21, 1, 22, '10:25; 11:25; 12:25'),
+(22, 1, 23, '10:30; 11:30; 12:30'),
+(23, 1, 24, '10:35; 11:35; 12:35'),
+(24, 1, 25, '10:40; 11:40; 12:40'),
+(25, 1, 26, '10:45; 11:45; 12:45'),
+(26, 1, 27, '10:50; 11:50; 12:50'),
+(27, 1, 28, '10:55; 11:55; 12:55'),
+(28, 1, 29, '11:00; 12:00; 13:00'),
+(29, 1, 30, '11:05; 12:05; 13:05');
 
 --
 -- Constraints for dumped tables
